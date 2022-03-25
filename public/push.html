@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/assets/bootstrap.min.css" integrity="sha256-Md8eaeo67OiouuXAi8t/Xpd8t2+IaJezATVTWbZqSOw=" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@json-editor/json-editor@latest/dist/css/jsoneditor.min.css" />
+  <link href="/assets/gijgo.min.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/main.css">
+  <title>Publicator</title>
+  <meta name="description" content="Tools">
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-dark box-shadow">
+    <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i>&nbsp;Publicator</a>
+    <a class="nav navbar-nav navbar-text navbar-right authed-nav" href="/signout">Sign out</a>
+  </nav>
+
+  <div class="alert alert-danger" role="alert" style="display:none;"><span id="error-desc"></span> </div>
+
+  <header class="pt-5 text-center">
+    <div class="container">
+      <h1 id="engine" class="display-4 bold">Static Site Publisher</h1>
+      <h4 id="user">Hi, {{username}}!</h4>
+    </div>
+  </header>
+  <br>
+  <div class="container">
+    <div class="row mb-4"><div class="input-group justify-content-center">
+      <div class="input-group-text">Last generated:&nbsp;<div id="lastgenerated"></div></div>&nbsp;
+      <input id="lastgenerated_timestamp" type="hidden" value="{{lastgenerated_timestamp}}">
+      <input id="preview_link" type="hidden" value="{{preview_link}}">
+      <button id="generate" class="btn"><i class="fas fa-sync"></i>&nbsp;Generate</button>&nbsp;
+      <button id="fbedit_toggle" class="btn" type="button" data-toggle="collapse" data-target="#fbedit_collapse" aria-expanded="false" aria-controls="fbedit_collapse">
+        <i class="fas fa-edit"></i>&nbsp;Edit config</i></button>&nbsp;
+        <button id="preview" class="btn"><i class="fas fa-eye"></i>&nbsp;Preview</button>
+      </div>
+    </div>
+    
+    <div id="fbedit_collapse" class="row mb-4 collapse form-group">
+      <div class="col">
+        
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" id="sc-tab" data-toggle="tab" href="#sc" role="tab" aria-controls="sc" aria-selected="true">Scraper configuration</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="fb-tab" data-toggle="tab" href="#fb" role="tab" aria-controls="fb" aria-selected="true">Hosting configuration</a>
+          </li>
+        </ul>
+        
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="sc" role="tabpanel" aria-labelledby="sc-tab">
+            <div id="scrapereditor"></div>
+            <div class="input-group">
+              <button id="scrapersave" class="btn">Save scraper configuration</button>&nbsp;<div id="scrapersavestatus"></div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="fb" role="tabpanel" aria-labelledby="fb-tab">
+            <div id="firebaseeditor"></div>
+            <div class="input-group">
+            <button id="firebasesave" class="btn">Save hosting configuration</button>&nbsp;<div id="firebasesavestatus"><i class="fas fa-exclamation"></i></div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="row mb-4">
+
+      <div class="input-group justify-content-center">
+        <div class="input-group-text">Last published:&nbsp;<div id="lastpublished"></div></div>&nbsp;
+        <input id="lastpublished_timestamp" type="hidden" value="{{lastpublished_timestamp}}">
+        <button id="publishnow" class="btn red-tooltip" data-toggle="tooltip" data-placement="right" data-html="true" title="<i class='fas fa-exclamation-triangle'></i><br>Clicking this will update<br>the public facing website"><i
+          class="fas fa-exclamation"></i>&nbsp;Publish Now</button>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="input-group justify-content-center">
+          <div id="scheduledtime" class="input-group-text"></div>&nbsp;
+          <input id="scheduled_timestamp" type="hidden" value="{{scheduled_timestamp}}">
+          <input id="dtpicker" width="212" />&nbsp;
+          <button id="schedule" class="btn"><i class="fas fa-calendar-plus"></i>&nbsp;Schedule publishing</button>&nbsp;
+          <button id="cancelschedule" class="btn"><i class="fas fa-calendar-times"></i>&nbsp;Cancel scheduled</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="form-group">
+        <label for="ta-stdout">Progress</label>
+        <textarea class="form-control" id="ta-stdout" rows="20" style="min-width: 100%" readonly></textarea>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2"><a class="text-dark" href="https://github.com/alexivkin/publicator/blob/master/README.md">Documentation</a></div>
+          <div class="col-md-2"><a class="text-dark" href="https://github.com/alexivkin/publicator">Source</a></div>
+          <div class="col-md-8 text-right">
+            <div class="text-muted">Created with &hearts;&nbsp;by&nbsp;<a class="text-dark" href="https://ivkin.net">Alex Ivkin</a>.</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/jquery.min.js"></script>
+    <script src="/assets/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"></script>
+    <script src="/assets/bootstrap.min.js" integrity="sha256-xaF9RpdtRxzwYMWg4ldJoyPWqyDPCRD0Cv7YEEe6Ie8="></script>
+    <script src="/assets/handlebars.min.js" integrity="sha256-+JMHsXRyeTsws/tzbIh5YHQxRdKCuNjmvNcTFtY6DLc=" crossorigin="anonymous"></script>
+
+    <script src="/assets/gijgo.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha256-ZsWP0vT+akWmvEMkNYgZrPHKU9Ke8nYBPC3dqONp1mY=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@json-editor/json-editor@latest/dist/jsoneditor.min.js"></script>
+
+    <script src="/client.js"></script>
+
+  </body>
+
+  </html>

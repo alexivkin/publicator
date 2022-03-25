@@ -1,0 +1,71 @@
+{
+  "type": "object",
+  "title": "Scraper configuration",
+  "description": "",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "properties": {
+    "sourceSite": {
+      "description": "Site to scrape",
+      "type": "string"
+    },
+    "targetSite": {
+      "description": "Target site. Only used in the URLs listed under absoluteLinks",
+      "type": "string"
+    },
+    "page404": {
+      "description": "Non-existant URL to scrape the 404 contents from. Will be stored in the file corresponding to this URL",
+      "type": "string"
+    },
+    "absoluteLinks": {
+      "description": "Pages which should use absolute URLs (e.g. feeds and sitemaps)",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "options": {
+        "collapsed": true
+      }
+    },
+    "extraURLs": {
+      "description": "Additional URLs to crawl and scrape",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "options": {
+        "collapsed": true
+      }
+    },
+    "ignoreURLs": {
+      "description": "URLs to skip during crawling",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "options": {
+        "collapsed": true
+      }
+    },
+    "sisterDomains": {
+      "description": "Which domains we should also remove from the links (e.g. absolute links pointing to copies of the scraped site)",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "options": {
+        "collapsed": true
+      }
+    },
+    "viewers": {
+      "description": "List of emails for people allowed to access site preview",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "options": {
+        "grid_columns": 3,
+        "collapsed": true
+      }
+    }
+ }
+}

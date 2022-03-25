@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/assets/bootstrap.min.css" integrity="sha256-Md8eaeo67OiouuXAi8t/Xpd8t2+IaJezATVTWbZqSOw=" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/main.css">
+  <title>Publicator</title>
+  <meta name="description" content="Bring git forks in sync with the original repositories">
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-dark box-shadow">
+    <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i>&nbsp;Publicator</a>
+  </nav>
+
+  <div class="alert alert-danger" id="alert" style="display:none;"><span id="error-desc"></span> </div>
+
+  <header class="pt-5 text-center">
+    <div class="container">
+      <h1 class="display-4"><b>Hi there!</b></h1>
+      <h4>Incredibly Integrated Internal Instrumentation</h4>
+      <p>including interesting implementation ideas</p>
+    </div>
+  </header>
+
+  <main class="pt-5">
+    <div class="container" id="signin">
+      <div class="input-group justify-content-center">
+        <div class="input-group-btn">
+          <a id="oauthlink" role="button" class="btn btn-lg btn-dark" href="/auth">
+            <span class="fab fa-google"></span>&nbsp;Sign in with Google
+          </a>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"><a class="text-dark" href="https://github.com/alexivkin/publicator/blob/master/README.md">Documentation</a></div>
+        <div class="col-md-2"><a class="text-dark" href="https://github.com/alexivkin/publicator">Source</a></div>
+        <div class="col-md-8 text-right">
+          <div class="text-muted">Created with &hearts;&nbsp;by&nbsp;<a class="text-dark" href="https://ivkin.net">Alex Ivkin</a>.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/jquery.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="></script>
+  <script src="/assets/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"></script>
+  <script src="/assets/bootstrap.min.js" integrity="sha256-xaF9RpdtRxzwYMWg4ldJoyPWqyDPCRD0Cv7YEEe6Ie8="></script>
+  
+  <script>
+    function renderError(description) {
+      $('#error-desc').text(decodeURIComponent(description));
+      $('#alert').show();
+    }
+    if (typeof (EventSource) == "undefined") {
+      renderError("No support for SSE. Switch to a modern browser, and not Edge");
+    }
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("preview")) {
+      $('#oauthlink').attr("href","/auth?preview")
+    }
+    if (urlParams.get("error")!=null) {
+      renderError(urlParams.get("error"))
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/*.bak"
+    ],
+    "redirects": [
+      {
+        "source": "/details/",
+        "destination": "/2020/12/22/details/",
+        "type": "301"
+      },
+      {
+        "source": "/know-your-device/",
+        "destination": "/know-your-own-device/",
+        "type": "301"
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/feed/",
+        "destination": "/feed"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Content-Security-Policy",
+            "value": "default-src 'self' https://www.youtube.com https://forms.hsforms.com; script-src 'self' 'unsafe-inline' https://lftracker.leadfeeder.com https://tracking.leadlander.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google-analytics.com https://www.youtube.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://www.googletagmanager.com https://ajax.googleapis.com https://js.hsforms.net https://js.hs-scripts.com https://js.hs-analytics.net https://js.hsadspixel.net https://forms.hsforms.com; connect-src 'self' https://api.hubapi.com https://script.google.com https://script.googleusercontent.com/; font-src 'self' https://fonts.gstatic.com data: https://fonts.gstatic.com:443; img-src 'self' data: https://tr.lfeeder.com/ https://tracking.leadlander.com/ https://track.hubspot.com/ https://forms.hsforms.com https://secure.gravatar.com:443 https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com:443 https://ajax.googleapis.com https://stackpath.bootstrapcdn.com;"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+"domain":"<domain shared between publisher and preview>",
+"main_url":"https://<host where publisher lives>/",
+"preview_url":"https://<host where preview will be>/",
+"admins":["<admin email>","<another admin>"],
+
+"oauth2":{
+	"id": "<some id that ends wtih apps.googleusercontent.com>",
+	"secret":"<long alphanumerical pwd>",
+	"redirect_uris":["https://<main host goes here>/callback"]
+ },
+
+"firebase":{
+  "type": "service_account",
+  "project_id": "<gcp project id>",
+  "private_key_id": "<someprivate key id>",
+  "private_key": "<actual private key>",
+  "client_email": "<service id name ending in iam.gserviceaccount.com>",
+  "client_id": "<numerical serviceid id>",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/<project goes here>"
+}
+}

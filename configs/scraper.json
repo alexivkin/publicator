@@ -1,0 +1,31 @@
+{
+  "sourceSite": "https://source.site.com",
+  "targetSite": "https://site.com",
+  "page404": "/404.html",
+  "absoluteLinks": [
+    "/sitemaps.xml",
+    "/feed",
+    "/sitemaps/"
+  ],
+  "extraURLs": [
+    "/404.html",
+    "/feed/",
+    "/sitemaps.xml",
+    "/sitemaps_xsl.xsl",
+    "/sitemaps/post-sitemap1.xml",
+    "/sitemaps/page-sitemap1.xml",
+    "/sitemaps/category-sitemap.xml",
+    "/sitemaps/post_tag-sitemap.xml"
+  ],
+  "ignoreURLs": [
+    "\\.php"
+  ],
+  "sisterDomains": [
+    "site.net",
+    "www.site.com",
+    "wp.site.io"
+  ],
+  "viewers": [
+    "admin@site.com"
+  ]
+}
